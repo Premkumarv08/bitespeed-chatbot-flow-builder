@@ -86,7 +86,7 @@ function App() {
   }, [nodeName, selectedElements, setNodes]);
 
   // Handle node click
-  const onNodeClick: NodeMouseHandler = useCallback((event, node) => {
+  const onNodeClick: NodeMouseHandler = useCallback((_event, node) => {
     setSelectedElements([node]);
     setNodeName(node.data.label);
     setNodes((nodes) =>
@@ -193,7 +193,7 @@ function App() {
         data: { label: `${type}` },
       };
 
-      setNodes((nds) => nds.concat(newNode));
+      setNodes((nds: any) => nds.concat(newNode));
     },
     [reactFlowInstance]
   );
@@ -231,7 +231,7 @@ function App() {
           <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
           <Controls />
           <MiniMap zoomable pannable />
-          <Panel>
+          <Panel position={"top-left"}>
             <button
               className=" m-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               onClick={onSave}
